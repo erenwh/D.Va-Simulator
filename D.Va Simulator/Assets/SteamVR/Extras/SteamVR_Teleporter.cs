@@ -11,7 +11,7 @@ public class SteamVR_Teleporter : MonoBehaviour
 	}
 
 	public bool teleportOnClick = false;
-	public TeleportType teleportType = TeleportType.TeleportTypeUseZeroY;
+	public TeleportType teleportType = TeleportType.TeleportTypeUseCollider;
 
 	Transform reference
 	{
