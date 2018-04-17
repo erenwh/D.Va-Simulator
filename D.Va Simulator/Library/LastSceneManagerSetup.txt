@@ -1,4 +1,7 @@
 sceneSetups:
 - path: Assets/Scene/DVa.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/PolygonKnights/Demo/DemoScene.unity
   isLoaded: 1
   isActive: 1
