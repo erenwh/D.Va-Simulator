@@ -2,3 +2,6 @@ sceneSetups:
 - path: Assets/Scene/DVa.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/AirSig/Demo Scene/DeveloperDefined.unity
+  isLoaded: 1
+  isActive: 0
