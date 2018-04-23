@@ -1891,8 +1891,6 @@ namespace AirSig {
                         .TrimEnd(TAIL_TO_REMOVE)
                         .TrimEnd(NULL_TO_REMOVE);
                     if (DEBUG_LOG_ENABLED) Debug.Log("[AirSigManager][DeveloperDefined] match: " + gesture + ", score: " + score + ", conf: " + conf);
-					//Brian: find line fuck
-					//Debug.Log("shit happen");
                     if (null != furtherAction && null != bundle) {
                         bundle.matchGesture = gesture;
                         bundle.score = score;

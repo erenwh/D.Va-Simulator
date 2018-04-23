@@ -6,6 +6,7 @@ public class Target : MonoBehaviour {
 
     public float health = 100;
     public bool dead = false;
+	public bool isPlayer = false;
 
     public void TakeDamage(float damage)
     {
@@ -16,7 +17,9 @@ public class Target : MonoBehaviour {
 	void Update () {
 		if (dead == true)
         {
-            Destroy(gameObject);
+			if (isPlayer == false) {
+				Destroy(gameObject);
+			}
         }
 	}
 }

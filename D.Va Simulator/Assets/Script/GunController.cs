@@ -15,17 +15,28 @@ public class GunController : MonoBehaviour {
 	public Transform muzzleTransform;
 
     public float damage;
+	public bool menuShown;
     public Camera cam;
 
 	// Use this for initialization
 	void Start () {
+		menuShown = false;
 		controller = ControllerRight.GetComponent<SteamVR_TrackedController>();
 		controller.TriggerClicked += TriggerPressed;
+		controller.Gripped += GripHeld;
 		trackObj = ControllerRight.GetComponent<SteamVR_TrackedObject>();
 	}
 
 	private void TriggerPressed(object sender, ClickedEventArgs e) {
         fireNow();
+	}
+
+	private void GripHeld(object sender, ClickedEventArgs e) {
+		OpenMenu();
+	}
+
+	private void OpenMenu() {
+		menuShown = true;
 	}
 
     private void fireNow()
