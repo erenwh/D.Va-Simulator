@@ -12,6 +12,10 @@ using UnityEngine;
 namespace AirSig {
     public class AirSigManager : MonoBehaviour {
 
+		public bool isHeart = false;
+		public bool isC = false;
+		public bool isDown = false;
+
         /// Enable debug logging
         public static bool DEBUG_LOG_ENABLED = true;
 
@@ -1785,6 +1789,7 @@ namespace AirSig {
 
 			void onResult(AndroidJavaObject asGesture, float v, AndroidJavaObject asError) {
 				if(DEBUG_LOG_ENABLED) {
+
 					Debug.Log(
 						string.Format("[AirSigManager][IdentifyCommon] id:{0}, gesture:{1}, score:{2}, error:{3}",
 							mId,
@@ -1853,6 +1858,10 @@ namespace AirSig {
         // ====================================================================
         // Windows implementation
         //
+
+		//BRIAN FOUND THE EDITS FUCK
+		public GameObject gestureManager;
+
         static char[] TAIL_TO_REMOVE = Encoding.ASCII.GetString(new byte[] { (byte)254 }).ToCharArray();
         static char[] NULL_TO_REMOVE = Encoding.ASCII.GetString(new byte[] { (byte)0 }).ToCharArray();
         private void IdentifyPredefined(long id, float[] sensorData, List<string> targetGesture, string classifier, string subClassifier) {
@@ -1891,6 +1900,16 @@ namespace AirSig {
                         .TrimEnd(TAIL_TO_REMOVE)
                         .TrimEnd(NULL_TO_REMOVE);
                     if (DEBUG_LOG_ENABLED) Debug.Log("[AirSigManager][DeveloperDefined] match: " + gesture + ", score: " + score + ", conf: " + conf);
+					if (String.Equals(gesture,"HEART")) {
+						Debug.Log("hearting");
+						isHeart = true;
+					}
+					else if (String.Equals(gesture,"C")) {
+						isC = true;
+					}
+					else if (String.Equals(gesture,"DOWN")) {
+						isDown = true;
+					}
                     if (null != furtherAction && null != bundle) {
                         bundle.matchGesture = gesture;
                         bundle.score = score;
@@ -2517,6 +2536,17 @@ namespace AirSig {
         }
 
         void stopRightHandCollecting() {
+			if (isHeart == true) {
+				gestureManager.GetComponent<BrianGesture>().Fire();
+				isHeart = false;
+			}
+			else if (isC == true) {
+				isC = false;			
+			}
+			else if (isDown == true) {
+				isDown = false;
+			}
+			
             if (DEBUG_LOG_ENABLED) Debug.Log(string.Format("[AirSigManager] RightHand stopped collecting... {0} samples", mCollectedRightHandSamples.Count));
             mIsCollectingRightControllerData = false;
 

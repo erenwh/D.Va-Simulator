@@ -7,6 +7,7 @@ public class Target : MonoBehaviour {
     public float health = 100;
     public bool dead = false;
 	public bool isPlayer = false;
+	public GameObject scoreManager;
 
     public void TakeDamage(float damage)
     {
@@ -18,6 +19,7 @@ public class Target : MonoBehaviour {
 		if (dead == true)
         {
 			if (isPlayer == false) {
+				scoreManager.GetComponent<Score>().addScore(3);
 				Destroy(gameObject);
 			}
         }
