@@ -2551,7 +2551,7 @@ namespace AirSig {
 
         void Update () {
             if(mCVRSystem == null) {
-                Debug.LogWarning("Unable to find the VR system");
+                //Debug.LogWarning("Unable to find the VR system");
                 return;
             }
             // Determine right hand status
